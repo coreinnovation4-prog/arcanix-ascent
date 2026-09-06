@@ -199,6 +199,12 @@ export function RegistrationSection() {
                 {errors.events && <span className="register-error" role="alert">{errors.events}</span>}
               </fieldset>
 
+              <fieldset className="register-fieldset">
+                <legend>PAY THE REGISTRATION FEE</legend>
+                <PaymentQrPanel qr={activeQr} clicks={clicks} />
+              </fieldset>
+
+
               <div className="register-submit-row">
                 <p className="register-demo-note">
                   This terminal is a demo entry form — details are not stored or sent anywhere yet.
