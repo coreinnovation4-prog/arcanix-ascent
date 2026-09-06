@@ -34,9 +34,20 @@ export function RegistrationSection() {
   const [selected, setSelected] = useState<string[]>([]);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields | "events", string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [dateKey, setDateKey] = useState(() => localDateKey());
+  const [clicks, setClicks] = useState(0);
+
+  useEffect(() => {
+    const today = localDateKey();
+    setDateKey(today);
+    setClicks(readClicks(today));
+  }, []);
+
+  const activeQr = qrForState(dateKey, clicks);
 
   const techNames = useMemo(() => technicalEvents.map((e) => e.name), []);
   const chaosNames = useMemo(() => nonTechnicalEvents.map((e) => e.name), []);
+
 
   const setField = (key: keyof Fields, value: string) => {
     setFields((prev) => ({ ...prev, [key]: value }));
