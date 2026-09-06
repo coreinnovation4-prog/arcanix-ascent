@@ -128,6 +128,8 @@ export function RegistrationSection() {
                 <div><dt>PARTICIPANT</dt><dd>{fields.fullName}</dd></div>
                 <div><dt>OPERATIONS SELECTED</dt><dd>{selected.join(" · ")}</dd></div>
               </dl>
+              <PaymentQrPanel qr={activeQr} clicks={clicks} />
+
               <p className="register-demo-note">
                 DEMO SUBMISSION — this form is not yet connected to a registration system, so nothing has been stored
                 or sent. Official registration will be confirmed by the coordinators.
