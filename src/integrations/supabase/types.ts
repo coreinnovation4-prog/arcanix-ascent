@@ -14,78 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      live_schemes: {
+      registrations: {
         Row: {
-          category: string
+          college: string
           created_at: string
-          data_en: Json
-          data_ta: Json
-          data_tl: Json
-          fetched_at: string
+          department: string
+          email: string
+          event_day: number | null
+          events: string[]
+          full_name: string
           id: string
-          last_updated: string | null
-          official_source: string | null
-          popular: boolean | null
-          scheme_id: string
+          payment_holder: string | null
+          payment_screenshot_path: string | null
+          payment_upi_id: string | null
+          phone: string
           status: string
-          updated_at: string
+          team_members: Json
+          team_name: string | null
+          year: string
         }
         Insert: {
-          category: string
+          college: string
           created_at?: string
-          data_en?: Json
-          data_ta?: Json
-          data_tl?: Json
-          fetched_at?: string
+          department: string
+          email: string
+          event_day?: number | null
+          events?: string[]
+          full_name: string
           id?: string
-          last_updated?: string | null
-          official_source?: string | null
-          popular?: boolean | null
-          scheme_id: string
+          payment_holder?: string | null
+          payment_screenshot_path?: string | null
+          payment_upi_id?: string | null
+          phone: string
           status?: string
-          updated_at?: string
+          team_members?: Json
+          team_name?: string | null
+          year: string
         }
         Update: {
-          category?: string
+          college?: string
           created_at?: string
-          data_en?: Json
-          data_ta?: Json
-          data_tl?: Json
-          fetched_at?: string
+          department?: string
+          email?: string
+          event_day?: number | null
+          events?: string[]
+          full_name?: string
           id?: string
-          last_updated?: string | null
-          official_source?: string | null
-          popular?: boolean | null
-          scheme_id?: string
+          payment_holder?: string | null
+          payment_screenshot_path?: string | null
+          payment_upi_id?: string | null
+          phone?: string
           status?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      sync_log: {
-        Row: {
-          created_at: string
-          error_message: string | null
-          id: string
-          schemes_count: number | null
-          status: string
-          sync_type: string
-        }
-        Insert: {
-          created_at?: string
-          error_message?: string | null
-          id?: string
-          schemes_count?: number | null
-          status: string
-          sync_type: string
-        }
-        Update: {
-          created_at?: string
-          error_message?: string | null
-          id?: string
-          schemes_count?: number | null
-          status?: string
-          sync_type?: string
+          team_members?: Json
+          team_name?: string | null
+          year?: string
         }
         Relationships: []
       }
