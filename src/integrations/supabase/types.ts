@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      registrations: {
+        Row: {
+          college: string
+          created_at: string
+          department: string
+          email: string
+          event_day: number | null
+          events: string[]
+          full_name: string
+          id: string
+          payment_holder: string | null
+          payment_screenshot_path: string | null
+          payment_upi_id: string | null
+          phone: string
+          status: string
+          team_members: Json
+          team_name: string | null
+          year: string
+        }
+        Insert: {
+          college: string
+          created_at?: string
+          department: string
+          email: string
+          event_day?: number | null
+          events?: string[]
+          full_name: string
+          id?: string
+          payment_holder?: string | null
+          payment_screenshot_path?: string | null
+          payment_upi_id?: string | null
+          phone: string
+          status?: string
+          team_members?: Json
+          team_name?: string | null
+          year: string
+        }
+        Update: {
+          college?: string
+          created_at?: string
+          department?: string
+          email?: string
+          event_day?: number | null
+          events?: string[]
+          full_name?: string
+          id?: string
+          payment_holder?: string | null
+          payment_screenshot_path?: string | null
+          payment_upi_id?: string | null
+          phone?: string
+          status?: string
+          team_members?: Json
+          team_name?: string | null
+          year?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
