@@ -1,5 +1,7 @@
 import dhayalanQr from "@/assets/upi-qr-dhayalan.jpg.asset.json";
 import vinishkaQr from "@/assets/upi-qr-vinishka.jpg.asset.json";
+import nandhiniQr from "@/assets/upi-qr-nandhini.jpg.asset.json";
+import santhoshQr from "@/assets/upi-qr-santhosh.jpg.asset.json";
 
 export type PaymentQr = {
   id: string;
@@ -11,13 +13,20 @@ export type PaymentQr = {
 /** Day 1 of the symposium always opens on the first QR. */
 export const EVENT_DAY_ONE = "2026-09-07";
 
-/** Rotation order — a new QR takes over after every CLICKS_PER_QR registrations. */
+/**
+ * Rotation order. Day 1 starts on the first QR and moves to the next one
+ * after every CLICKS_PER_QR registrations; the count restarts each day.
+ */
 export const paymentQrs: PaymentQr[] = [
   { id: "dhayalan", holder: "Dhayalan B", upiId: "dhayalanb2@okhdfcbank", url: dhayalanQr.url },
   { id: "vinishka", holder: "Vinishka G", upiId: "vinika03042006@oksbi", url: vinishkaQr.url },
+  { id: "nandhini", holder: "Nandhini S", upiId: "9944981163@ptaxis", url: nandhiniQr.url },
+  { id: "santhosh", holder: "Santhosh Gurunathan", upiId: "itsmesanthosh.guru-1@okaxis", url: santhoshQr.url },
 ];
 
 export const CLICKS_PER_QR = 30;
+
+
 
 export const localDateKey = (date = new Date()) => {
   const y = date.getFullYear();
