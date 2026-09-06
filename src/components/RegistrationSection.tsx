@@ -86,8 +86,10 @@ export function RegistrationSection() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    setClicks(recordClick(dateKey));
     setSubmitted(true);
   };
+
 
   const reset = () => {
     setFields(emptyFields);
