@@ -56,5 +56,5 @@ const dayOffset = (dateKey: string) => {
  */
 export const qrForState = (dateKey: string, clicks: number): PaymentQr => {
   const step = dayOffset(dateKey) + Math.floor(clicks / CLICKS_PER_QR);
-  return paymentQrs[step % paymentQrs.length];
+  return paymentQrs[step % paymentQrs.length]!;
 };
