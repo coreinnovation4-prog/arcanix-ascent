@@ -8,16 +8,23 @@ export type PaymentQr = {
   url: string;
 };
 
-/** Day 1 of the symposium always opens on the first QR. */
+/** Day 1 of the symposium. */
 export const EVENT_DAY_ONE = "2026-09-07";
 
-/** Rotation order — a new QR takes over after every CLICKS_PER_QR registrations. */
-export const paymentQrs: PaymentQr[] = [
-  { id: "dhayalan", holder: "Dhayalan B", upiId: "dhayalanb2@okhdfcbank", url: dhayalanQr.url },
-  { id: "vinishka", holder: "Vinishka G", upiId: "vinika03042006@oksbi", url: vinishkaQr.url },
-];
+const dhayalan: PaymentQr = { id: "dhayalan", holder: "Dhayalan B", upiId: "dhayalanb2@okhdfcbank", url: dhayalanQr.url };
+const vinishka: PaymentQr = { id: "vinishka", holder: "Vinishka G", upiId: "vinika03042006@oksbi", url: vinishkaQr.url };
+
+/**
+ * One rotation list per event day. Day 1 collects on the first QR only;
+ * the second QR is used only on day 2. Within a day the list advances
+ * once for every CLICKS_PER_QR registrations.
+ */
+export const qrsByDay: PaymentQr[][] = [[dhayalan], [vinishka]];
+
+export const paymentQrs: PaymentQr[] = [dhayalan, vinishka];
 
 export const CLICKS_PER_QR = 30;
+
 
 export const localDateKey = (date = new Date()) => {
   const y = date.getFullYear();
