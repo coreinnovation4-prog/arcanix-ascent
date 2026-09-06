@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Lock, Terminal } from "lucide-react";
 import { technicalEvents } from "@/data/technicalEvents";
 import { nonTechnicalEvents } from "@/data/nonTechnicalEvents";
+import { PaymentQrPanel } from "@/components/PaymentQrPanel";
+import { localDateKey, qrForState, readClicks, recordClick } from "@/lib/paymentQr";
+
 
 type Fields = {
   fullName: string;
