@@ -4435,3 +4435,43 @@ button.primary-cta {
     transform: none;
   }
 }
+/* Payment QR channel (rotates per day / every 30 registrations) */
+.payment-qr-panel {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.4rem;
+  background: hsl(var(--card) / 0.6);
+}
+
+.payment-qr-head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: hsl(var(--muted-foreground));
+}
+
+.payment-qr-head span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.payment-qr-image {
+  width: min(300px, 100%);
+  height: auto;
+  border-radius: 0.35rem;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.payment-qr-panel .file-facts {
+  width: 100%;
+}

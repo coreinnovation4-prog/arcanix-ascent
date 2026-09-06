@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Lock, Terminal } from "lucide-react";
 import { technicalEvents } from "@/data/technicalEvents";
 import { nonTechnicalEvents } from "@/data/nonTechnicalEvents";
+import { PaymentQrPanel } from "@/components/PaymentQrPanel";
+import { localDateKey, qrForState, readClicks, recordClick } from "@/lib/paymentQr";
+
 
 type Fields = {
   fullName: string;
@@ -31,9 +34,20 @@ export function RegistrationSection() {
   const [selected, setSelected] = useState<string[]>([]);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields | "events", string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [dateKey, setDateKey] = useState(() => localDateKey());
+  const [clicks, setClicks] = useState(0);
+
+  useEffect(() => {
+    const today = localDateKey();
+    setDateKey(today);
+    setClicks(readClicks(today));
+  }, []);
+
+  const activeQr = qrForState(dateKey, clicks);
 
   const techNames = useMemo(() => technicalEvents.map((e) => e.name), []);
   const chaosNames = useMemo(() => nonTechnicalEvents.map((e) => e.name), []);
+
 
   const setField = (key: keyof Fields, value: string) => {
     setFields((prev) => ({ ...prev, [key]: value }));
@@ -72,8 +86,10 @@ export function RegistrationSection() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    setClicks(recordClick(dateKey));
     setSubmitted(true);
   };
+
 
   const reset = () => {
     setFields(emptyFields);
@@ -112,6 +128,8 @@ export function RegistrationSection() {
                 <div><dt>PARTICIPANT</dt><dd>{fields.fullName}</dd></div>
                 <div><dt>OPERATIONS SELECTED</dt><dd>{selected.join(" · ")}</dd></div>
               </dl>
+              <PaymentQrPanel qr={activeQr} clicks={clicks} />
+
               <p className="register-demo-note">
                 DEMO SUBMISSION — this form is not yet connected to a registration system, so nothing has been stored
                 or sent. Official registration will be confirmed by the coordinators.
@@ -182,6 +200,12 @@ export function RegistrationSection() {
 
                 {errors.events && <span className="register-error" role="alert">{errors.events}</span>}
               </fieldset>
+
+              <fieldset className="register-fieldset">
+                <legend>PAY THE REGISTRATION FEE</legend>
+                <PaymentQrPanel qr={activeQr} clicks={clicks} />
+              </fieldset>
+
 
               <div className="register-submit-row">
                 <p className="register-demo-note">
